@@ -18,7 +18,7 @@
     <div class="row clearfix">
         <div class="col-md-4 column">
             <h2 class="text-right">
-            <a class="text-muted" href=" "><strong>Search </strong> </a>
+            <a class="text-muted" href="/"><strong>Search </strong> </a>
             </h2>
         </div>
         <div class="col-md-4 column">
@@ -67,8 +67,14 @@
                             <table>
                                 <tr>
                                     <td> similarity:<%= repo_list[repo][1] %> </td>
+                                </tr>
+                                <tr>
                                     <td> stars:<%= repo_list[repo][2] %> </td>
+                                </tr>
+                                <tr>
                                     <td> score:<%= repo_list[repo][3] %> </td>
+                                </tr>
+                                <tr>
                                     <td> <a class="btn" href="<%="https://github.com/"+repo_list[repo][0]%>">
                                             View details »</a> </td>
                                 </tr>
