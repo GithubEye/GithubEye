@@ -28,9 +28,18 @@ function Get_follow(user,f){
 
 			res.on('end', function(d) {
 				var dict;
-				dict= JSON.parse(str);
-				for(var j in dict)
-					username.push(dict[j]['login'])
+				try
+				{
+					dict= JSON.parse(str);
+				}
+				catch(err){
+					console.log('WTF!something fucking has happened!')
+				}
+				finally
+				{
+					for(var j in dict)
+						username.push(dict[j]['login']);
+				};
 			});
 		
 			});
