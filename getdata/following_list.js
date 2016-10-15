@@ -55,14 +55,12 @@ function Get_follow(user,f){
 					}
 				});
 				break;
-			}/*
+			/*}
 			catch(e){
 				console.log('fuck');
 				continue;
 			}*/
-		}
 	}
-	
 }
 
 
