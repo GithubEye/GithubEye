@@ -69,6 +69,7 @@ function text_similarity(text , pattern)//text & pattern are strs, return a numb
 module.exports = {
 similarity_check : function(fullname , description , f)
 {
+	console.log('#now calling [similarity_check]#')
 	get_readme.get_readme(fullname , 
 	function(readme_text)
 	{

@@ -10,6 +10,8 @@ get_stars : function(fullname , f)
 
 	var result = 0
 
+	console.log('#now calling [get_stars]#')
+
 	var https = require('https');
 	var request = https.get(options,
 		function(res){

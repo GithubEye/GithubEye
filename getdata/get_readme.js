@@ -10,6 +10,8 @@ get_readme : function(fullname , f)
 
 	var result = '';
 
+	console.log('#now calling [get_readme]#');
+
 	var https = require('https');
 	var request = https.get(options,
 		function(res){
