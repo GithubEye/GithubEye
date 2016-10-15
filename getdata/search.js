@@ -123,10 +123,17 @@ module.exports = {
 							fun(repo , desc , f , extra_res);
 							return;
 						}
-						else
-						{
-							throw('What the fucking Internet connection!!!!!!!!');
-						}
+						setTimeout(function(){
+							if(repo_finish_count == namelist.length)
+							{
+								fun(repo , desc , f , extra_res);
+								return;
+							}
+							else
+							{
+								throw('What the fucking Internet connection!!!!!!!!');
+							}
+						} , 5000);
 					} , 5000)
 				} , 5000);
 			} , 5000)

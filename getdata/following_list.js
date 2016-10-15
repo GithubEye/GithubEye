@@ -13,53 +13,40 @@ function Get_follow(user,f){
 	var username=new Array();
 	var str = "";
 	var count = 0;
-	for(var i in user){
-		options.path='/users/'+user[i]+'/following?client_id=4565735ff9352155de90&client_secret=0529ff26465042c495644a393337153facece8ad';
-		var request;
-		/*
-		for(var i=0;i<10;i++)
-		{
-			try{*/
-				//sleep(100);
-				request = https.get(options, function(res) {
-				console.log('Got response' + res.statusCode);
-				str = "";
-				//console.log(str);
-	
-				res.on('data', function(d) {
-					str+=d;
-				});
-	
-				res.on('end', function(d) {
-					//console.log(str);
-					var dict;
-					dict= JSON.parse(str);
-			
-					for(var i in dict)
-					{
-						username.push(dict[i]['login'])
-					}
-					//console.log(username);
-				});
-			
-				});
-				request.on('error', function(e) {
-					console.error(e);
-				});
-				request.on('close' , function(){
-					count++;
-					if(count == user.length)
-					{
-						//console.log('sdasd   '+username);
-						f(username);
-					}
-				});
-				break;
-			/*}
-			catch(e){
-				console.log('fuck');
-				continue;
-			}*/
+	for(var batch = 0 ; batch < Math.floor(user.length / 3) + 1 ; batch++){
+		count = 0;
+		for(var i = batch * 3 ; i < batch * 3 + 3 && i < user.length ; i++){
+			options.path='/users/'+user[i]+'/following?client_id=4565735ff9352155de90&client_secret=0529ff26465042c495644a393337153facece8ad';
+			var request;
+			request = https.get(options, function(res) {
+			console.log('Got response' + res.statusCode);
+			str = "";
+
+			res.on('data', function(d) {
+				str+=d;
+			});
+
+			res.on('end', function(d) {
+				var dict;
+				dict= JSON.parse(str);
+				for(var j in dict)
+					username.push(dict[j]['login'])
+			});
+		
+			});
+			request.on('error', function(e) {
+				console.error(e);
+			});
+			request.on('close' , function(){
+				count++;
+				if(count == user.length)
+				{
+					f(username);
+				}
+			});
+		}
+
+		sleep(200);
 	}
 }
 
