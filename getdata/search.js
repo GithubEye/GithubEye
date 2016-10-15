@@ -10,11 +10,13 @@ function evaluate(instance)
 
 function fun2(ext_repolist , f , extra_res)
 {
+	for(var i = 0 ; i < ext_repolist.length ; i++)
+		ext_repolist[i][3] = evaluate(ext_repolist[i]);
 	var tmp;
 	for(var i = 0 ; i < ext_repolist.length ; i++)
 		for(var j = 1 ; j < ext_repolist.length ; j++)
 		{
-			if(evaluate(ext_repolist[j - 1]) < evaluate(ext_repolist[j]))
+			if(ext_repolist[j - 1][3] < ext_repolist[j][3])
 			{
 				tmp = ext_repolist[j - 1];
 				ext_repolist[j - 1] = ext_repolist[j];
@@ -29,7 +31,7 @@ function fun(repolist , desc , f , extra_res)
 {
 	var ext_repolist = [];
 	for(var i in repolist)
-		ext_repolist.push([repolist[i] , 0 , 0]);
+		ext_repolist.push([repolist[i] , 0 , 0 , 0]);
 	var count = 0;
 	for(var i in repolist)
 	{
