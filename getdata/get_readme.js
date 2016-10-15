@@ -16,7 +16,7 @@ get_readme : function(fullname , f)
 			console.log('Got response' + res.statusCode);
 			res.on('data' , function(data){
 				result += data;
-			});		
+			});
 		})
 	request.on('error' , function(e){console.log('got error' , e.message);});
 	request.on('close' , function(){f(result)});
