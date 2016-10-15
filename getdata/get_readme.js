@@ -35,6 +35,8 @@ function i_get_Readme(fullname , f , extra_res)
 
 	console.log('#now calling [get_Readme]#');
 
+	var ok = true;
+
 	var https = require('https');
 	var request = https.get(options,
 		function(res){
@@ -42,14 +44,14 @@ function i_get_Readme(fullname , f , extra_res)
 			if(res.statusCode == 404)
 			{
 				i_get_readme(fullname , f , extra_res);
-				return;
+				ok = false;;
 			}
 			res.on('data' , function(data){
 				result += data;
 			});
 		})
 	request.on('error' , function(e){console.log('got error' , e.message);});
-	request.on('close' , function(){if(extra_res == null)f(result);else f(result , extra_res)});
+	request.on('close' , function(){if(!ok)return;if(extra_res == null)f(result);else f(result , extra_res)});
 }
 function i_get_README(fullname , f , extra_res)
 {
@@ -65,20 +67,23 @@ function i_get_README(fullname , f , extra_res)
 	console.log('#now calling [get_README]#');
 
 	var https = require('https');
+
+	var ok = true;
+
 	var request = https.get(options,
 		function(res){
 			console.log('Got response' + res.statusCode);
 			if(res.statusCode == 404)
 			{
 				i_get_Readme(fullname , f , extra_res);
-				return;
+				ok = false;
 			}
 			res.on('data' , function(data){
 				result += data;
 			});
 		})
 	request.on('error' , function(e){console.log('got error' , e.message);});
-	request.on('close' , function(){if(extra_res == null)f(result);else f(result , extra_res)});
+	request.on('close' , function(){if(!ok)return;if(extra_res == null)f(result);else f(result , extra_res)});
 }
 
 module.exports = {

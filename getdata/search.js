@@ -36,7 +36,7 @@ function fun(repolist , desc , f , extra_res)
 		get_stars.get_stars(repolist[i] , 
 		function(stars , tmp_i){
 			console.log('get stars ' + stars);
-			ext_repolist[tmp_i][2] = stars;
+			ext_repolist[tmp_i][2] += stars;
 			count += 1;
 		} , i);
 	}
@@ -47,7 +47,7 @@ function fun(repolist , desc , f , extra_res)
 		similarity_check.similarity_check_version_v2(repolist[i] , words_in_pattern ,
 		function(similarity , tmp_i){
 			console.log('get similarity' , similarity);
-			ext_repolist[tmp_i][1] = similarity;
+			ext_repolist[tmp_i][1] += similarity;
 			count2 += 1;
 		} , i)
 	}
@@ -60,6 +60,7 @@ function fun(repolist , desc , f , extra_res)
 		}
 		else
 		{
+			console.log(count + '/' + repolist.length + ' | ' + count2 + '/' + repolist.length);
 			setTimeout(call_back_func , 5000);
 		}
 	}
