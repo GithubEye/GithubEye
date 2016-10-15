@@ -70,6 +70,7 @@ function fun(repolist , desc , f , extra_res)
 module.exports = {
 	search : function(user , desc , f , extra_res)
 	{
+		console.log(user , ' - ' , desc);
 		following_list.following_list(user ,
 		function(namelist)
 		{
@@ -103,6 +104,7 @@ module.exports = {
 	},
 	search_naive : function(user , desc , f , extra_res)
 	{
+		console.log(user , ' - ' , desc);
 		following_list.following_list_naive(user ,
 		function(namelist)
 		{
