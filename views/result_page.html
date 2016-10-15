@@ -66,13 +66,13 @@
 						<div class="panel-body">
                             <table>
                                 <tr>
-                                    <td> similarity:<%= repo_list[repo][1] %> </td>
+                                    <td> similarity:<%= repo_list[repo][1].toFixed(2) %> </td>
                                 </tr>
                                 <tr>
                                     <td> stars:<%= repo_list[repo][2] %> </td>
                                 </tr>
                                 <tr>
-                                    <td> score:<%= repo_list[repo][3] %> </td>
+                                    <td> score:<%= repo_list[repo][3].toFixed(2) %> </td>
                                 </tr>
                                 <tr>
                                     <td> <a class="btn" href="<%="https://github.com/"+repo_list[repo][0]%>">
