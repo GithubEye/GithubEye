@@ -6,7 +6,7 @@ following_list(username , callback , extra_res)
 
 只递归两层：username关注的人，以及关注的人关注的人
 {
-	callback(Dict{'username' : distance} , extra_res)
+	callback([usernames] , extra_res)
 }
 
 获得一个人的所有仓库列表
