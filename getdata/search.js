@@ -146,6 +146,7 @@ module.exports = {
 				}
 				else
 				{
+					console.log(repo_finish_count + '/' + namelist.length);
 					setTimeout(call_back_func , 5000);
 				}
 			};
