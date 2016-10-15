@@ -40,15 +40,15 @@ app.post('/search_similar_repo', urlencodedParser, function(req, res) {
 
 app.post('/show_followings', urlencodedParser, function(req, res) {
     username=req.body.text_username;
-    console.log(username);    
-    following.following_list(username,function(fullname_list,extra_res){	
+    console.log(username);
+    following.following_list(username,function(fullname_list,extra_res){
 	console.log(username);
 	console.log(fullname_list);
 	for(fullname in fullname_list){
 		console.log(fullname_list[fullname]);
 	}
 	res.render('show_following',{following_list:fullname_list});
-},res);    
+},res);
 });
 
 app.post('/show_repos', urlencodedParser, function(req, res) {
@@ -61,18 +61,15 @@ app.post('/show_repos', urlencodedParser, function(req, res) {
         }
         res.render('show_repolist', {repolist: fullname_list});
     }, res);
-    //TODO
 });
 
 app.post('/show_readme', urlencodedParser, function(req, res) {
     reponame=req.body.text_reponame;
     console.log(reponame);
     readme.get_readme(reponame, function(text, res){
-        //TODO
         console.log(text);
         res.render('show_readme', {text: text});
     }, res);
-    //TODO
 });
 
 app.post('/show_stars', urlencodedParser, function(req, res) {
