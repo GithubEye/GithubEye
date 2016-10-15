@@ -1,27 +1,27 @@
 获得一个人的所有following的信息（递归maxdepth层）
 
-following_list(user , maxdepth)
+following_list(user , maxdepth , callback)
 {
-	dict{'username' : distance}
+	callback(Dict{'username' : distance})
 }
 
 获得一个人的所有仓库列表
 
 repo_list(user , callback)
 {
-	dict{fullname}
+	callback(Array[fullname])
 }
 
 获得一个仓库的readme信息
 
 get_readme(fullname , callback)
 {
-		
+	callback(text)
 }
 
 获得一个仓库的stars数量
 
 get_stars(fullname , callback)
 {
-	
+	callback(number_of_stars)
 }
