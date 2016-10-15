@@ -1,0 +1,23 @@
+html
+
+html
+  body
+    h1 Image Search Results!
+
+    img(src=image_url width="512" height="512")
+
+    div
+      each image in detect.images
+        each face in image.faces
+          if face.identity
+            h1 Found Celebrity: #{face.identity.name}
+
+    div
+      each image in classify.images
+        each classifiers in image.classifiers
+          each c, index in classifiers.classes
+            h2 Class #{index}
+            ul
+              li class: #{c.class}
+              li score: #{c.score}
+              li type_hierarchy: #{c.type_hierarchy}
