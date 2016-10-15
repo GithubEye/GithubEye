@@ -21,15 +21,34 @@ get_stars : function(fullname , f , extra_res)
 			var full_respond = '';
 			console.log('Got response' + res.statusCode);
 
+			var local_timer = setTimeout(function(){
+					request.destroy();
+					console.log('request star timeout!');
+				} , 15000);
+
 			res.on('data' , function(data){
 				full_respond += data;
 			});
 
 			res.on('end' , function(){
-				var tmp = JSON.parse(full_respond);
-				result = tmp['stargazers_count']
+				clearTimeout(local_timer);
+				try
+				{
+					var tmp = JSON.parse(full_respond);
+				}
+				catch(e)
+				{
+					console.log('something ****ing has happended again');
+				}
+				finally
+				{
+					result = tmp['stargazers_count']
+				}
 			});
 		})
+
+	
+
 	request.on('error' , function(e){console.log('got error' , e.message);});
 	request.on('close' , function(){if(extra_res == null)f(result);else f(result , extra_res);});
 }};

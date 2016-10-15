@@ -18,16 +18,32 @@ repo_list : function(username , f , extra_res)
 			var full_respond = '';
 			console.log('Got response' + res.statusCode);
 
+			var local_timer = setTimeout(function(){
+				request.destroy();
+				console.log('get repo_list timeout');
+			} , 30000)
+
 			res.on('data' , function(data){
 				full_respond += data;
 			});
 
 			res.on('end' , function(){
-				var tmp = JSON.parse(full_respond);
-				for(var i in tmp)
+				clearTimeout(local_timer);
+				try
 				{
-					result.push(tmp[i]['full_name']);
-					//console.log('push' + tmp[i]['full_name'])
+					var tmp = JSON.parse(full_respond);
+				}
+				catch(e)
+				{
+					console.log('Something fucking just happened');
+				}
+				finally
+				{
+					for(var i in tmp)
+					{
+						result.push(tmp[i]['full_name']);
+						//console.log('push' + tmp[i]['full_name'])
+					}
 				}
 			})
 			
