@@ -1,0 +1,32 @@
+<html>
+    <body>
+        <div align="center">
+            <img src="http://img2.niushe.com/upload/201304/19/14-22-31-71-26144.jpg" 
+                align="center" width="20%" height="30%"> </img>
+        </div>
+        <form action="/search_similar_repo" method="POST" align="center">
+              Your Github name <input type = "text" name = "text_username">
+              Your Description <input type = "text" name = "text_description">
+              <input type = "submit" value = "Search similar repo">
+        </form>
+        <form action="/show_followings" method="POST" align="center">
+              Github name <input type = "text" name = "text_username">
+              <input type = "submit" value = "Show followings">
+        </form>
+
+         <form action="/show_repos" method="POST" align="center">
+              Github name <input type = "text" name = "text_username">
+              <input type = "submit" value = "Show repos">
+        </form>
+       
+         <form action="/show_readme" method="POST" align="center">
+              repo name <input type = "text" name = "text_reponame">
+              <input type = "submit" value = "Show readme">
+        </form>
+
+         <form action="/show_stars" method="POST" align="center">
+              repo name <input type = "text" name = "text_reponame">
+              <input type = "submit" value = "Show stars">
+        </form>
+    </body>
+</html>
