@@ -109,7 +109,7 @@ module.exports = {
 			setTimeout(call_back_func , 5000);
 		} , null)
 	},
-	search_naive : function()
+	search_naive : function(user , desc , f , extra_res)
 	{
 		following_list.following_list_naive(user ,
 		function(namelist)
