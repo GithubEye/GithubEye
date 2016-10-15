@@ -9,10 +9,12 @@ function split_sentence_to_word(str){
 		if(flag)
 		{
 			if((str[i] >= 'a' && str[i] <= 'z') || (str[i] >= '0' && str[i] <= '9')
-				|| (str[i] == '_') || (str[i] == '-') || (str[i] >= 'A' && str[i] <= 'Z'))
+				|| (str[i] >= 'A' && str[i] <= 'Z'))
 			{
 				word_now += str[i];
 				if(str[i] >= 'A' && str[i] <= 'Z')
+					special = true;
+				if(str[i] >= '0' && str[i] <= '9')
 					special = true;
 				if(str[i] == '_')
 					special = true;
@@ -33,9 +35,11 @@ function split_sentence_to_word(str){
 		else
 		{
 			if((str[i] >= 'a' && str[i] <= 'z') || (str[i] >= '0' && str[i] <= '9')
-				|| (str[i] == '_') || (str[i] == '-') || (str[i] >= 'A' && str[i] <= 'Z'))
+				|| (str[i] >= 'A' && str[i] <= 'Z'))
 			{
 				if(str[i] >= 'A' && str[i] <= 'Z')
+					special = true;
+				if(str[i] >= '0' && str[i] <= '9')
 					special = true;
 				if(str[i] == '_')special = true;
 				if(str[i] == '-')special = true;
@@ -81,7 +85,8 @@ function text_similarity_v2(text , words_in_pattern)
 		if(words_in_pattern[splitted_text[i]] > 0)
 			result += words_in_pattern[splitted_text[i]];
 	
-	return result / (total_length + 10);
+	return result;
+	//return result / (total_length + 10);
 }
 
 function text_similarity(text , pattern)//text & pattern are strs, return a number
@@ -94,7 +99,7 @@ function text_similarity(text , pattern)//text & pattern are strs, return a numb
 			words_in_pattern[splitted_pattern[i].toLowerCase()]++;
 		else
 		{
-			if(splitted_pattern[i][0] >= 'A' && split_sentence_to_word[i][0] <= 'Z')
+			if(splitted_pattern[i] == splitted_pattern[i].toUpperCase())
 				words_in_pattern[splitted_pattern[i].toLowerCase()] = 4;
 			else
 				words_in_pattern[splitted_pattern[i]] = 1;
