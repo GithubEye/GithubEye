@@ -12,9 +12,11 @@ module.exports = {
 			for(var i in namelist)
 			{
 				repo_list.repo_list(namelist[i] , 
-				function())
+				function(repolist_of_this_person)
+				{
+					repo.concat(repolist_of_this_person)
+				} , null)
 			}
-		}
-		, null)
+		} , null)
 	}
 };
