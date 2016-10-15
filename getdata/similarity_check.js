@@ -76,17 +76,18 @@ function eliminate_conjunctions(word_dict)
 
 function text_similarity_v2(text , words_in_pattern)
 {
+	console.log('words_in_pattern' , words_in_pattern);
 	var total_length = text.length + 1;
 
 	var splitted_text = split_sentence_to_word(text);
-
+	console.log('words_in_text' , splitted_text);
 	var result = 0;
 
 	for(var i in splitted_text)
 		if(words_in_pattern[splitted_text[i]] > 0)
 			result += words_in_pattern[splitted_text[i]];
 	
-	return result / total_length + Math.log(total_length);
+	return result * Math.log(total_length) * Math.log(total_length) / total_length;
 	//return result / (total_length + 10);
 }
 
