@@ -24,6 +24,7 @@ function Get_follow(user,f){
 			try{
 				//sleep(100);
 				request = https.get(options, function(res) {
+				console.log('Got response' + res.statusCode);
 				str = "";
 				//console.log(str);
 	
@@ -68,11 +69,13 @@ function Get_follow(user,f){
 
 
 module.exports = {
-following_list : function(str_user,f){
+following_list : function(str_user,f , res){
 	//var dict={};
 	var user=new Array();
 	user.push(str_user);
 	
+	console.log('#now calling [following_list]#')
+
 	var request=Get_follow(user,function(username){
 		//console.log(username);
 		var all_user=new Array();
@@ -85,12 +88,6 @@ following_list : function(str_user,f){
 		//console.log('1:'+all_user);
 		//var all_user2 = new Array();
 		Get_follow(username,function(username2){
-			//console.log('hi');
-			//console.log(username2);
-			//all_user.push(username2[0]);//.connect(username2);
-			
-			//console.log('what'+all_user2);
-			
 			for(var i in username2){
 				//console.log(username2[i] + ' = ' + hash[username2[i]]);
 				if(typeof(hash[username2[i]])=='undefined') 
@@ -98,7 +95,7 @@ following_list : function(str_user,f){
 				all_user.push(username2[i]);
 			}
 			//console.log('2'+all_user);
-			f(all_user);
+			f(all_user , res);
 		});
 	});
 		
