@@ -4,6 +4,10 @@ var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 var ejs = require('ejs');
 var readme = require('./getdata/get_readme');
+var stars = require('./getdata/get_stars');
+var repo = require('./getdata/repo_list');
+var following = require('./getdata/following_list');
+var similarity = require('./getdata/similarity_check');
 
 var app = express();
 // view engine setup
