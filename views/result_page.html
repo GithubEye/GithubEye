@@ -31,37 +31,30 @@
                     </form>
                 </div>
             </div>
-            <% for (repo in repo_list) {%> 
-                <div class="row clearfix">
-                    <div class="col-md-12 column">
-                        <h2>
-                            <%= repo_list[repo][0] %>
-                            <%= repo_list[repo][1].toFixed(2) %>
-                            <%= repo_list[repo][2] %>
-                        </h2>
-                        <p>
-                        <a class="btn" href="<%="https://github.com/"+repo_list[repo][0]%>">
+			<div class="panel-group" id="panel-199437">
+            <% for (repo in repo_list) {%>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						 <a class="panel-title collapsed" data-toggle="collapse" 
+                             data-parent="#panel-199437" href="<%= "#result"+repo %>">
+                             <%= repo_list[repo][0] %></a>
+					</div>
+                    <div id="<%= "result"+repo %>" class="panel-collapse collapse">
+						<div class="panel-body">
+                            <table>
+                                <tr>
+                                    similarity:<%= repo_list[repo][1] %>
+                                    stars:<%= repo_list[repo][2] %>
+                                    score:<%= repo_list[repo][3] %>
+                                    <a class="btn" href="<%="https://github.com/"+repo_list[repo][0]%>">
                             View details »</a>
-                        </p>
-                        <div class="row clearfix">
-                            <div class="col-md-4 column">
-                            </div>
-                            <div class="col-md-4 column">
-                            </div>
-                            <div class="col-md-4 column">
-                                <div class="row clearfix">
-                                    <div class="col-md-4 column">
-                                         <button type="button" class="btn btn-default">Get following list</button>
-                                    </div>
-                                    <div class="col-md-4 column">
-                                         <button type="button" class="btn btn-default">Get repo list</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <%}%>
+                                </tr>
+                            </table>
+						</div>
+					</div>
+				</div>
+            <% } %>
+			</div>
         </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

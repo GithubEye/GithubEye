@@ -36,6 +36,7 @@ app.post('/search_similar_repo', urlencodedParser, function(req, res) {
     description=req.body.text_description;
     console.log(username);
     console.log(description);
+    console.log("---------------------");
     search.search_naive(username, description, function(results, res){
         console.log(results);
         res.render('result_page', {repo_list: results});
@@ -47,6 +48,7 @@ app.post('/search_results', urlencodedParser, function(req, res) {
     description=req.body.text_description;
     console.log(username);
     console.log(description);
+    console.log("--------------------");
     search.search_naive(username, description, function(results, res){
         console.log(results);
         res.render('result_page', {repo_list: results});
