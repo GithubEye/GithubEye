@@ -1,3 +1,3 @@
 search = require('./search.js')
-search.search_naive('splintersu' , 'echo-service-ruby Skeleton code for a service broker, service and an app written in ruby. See the README in this directory for more information.' ,
+search.search_naive('splintersu' , 'CF message bus Message bus wrapper for use in Cloud Foundry components.' ,
 	function(ext_repo){console.log(ext_repo);} , null)

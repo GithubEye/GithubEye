@@ -5,7 +5,7 @@ similarity_check = require('./similarity_check.js');
 
 function evaluate(instance)
 {
-	return (instance[1] + 0.1) * 100 + (instance[2] + 1) * 0.01;
+	return (instance[1] + 0.1) * 100 + (instance[2] + 1) * 0.005;
 }
 
 function fun2(ext_repolist , f , extra_res)
