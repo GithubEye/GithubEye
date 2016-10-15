@@ -66,7 +66,9 @@ app.post('/show_readme', urlencodedParser, function(req, res) {
 app.post('/show_stars', urlencodedParser, function(req, res) {
     reponame=req.body.text_reponame;
     console.log(reponame);
-    //TODO
+    stars.get_stars(reponame,function(number_of_stars,res){
+       res.render('show_stars',{number_of_stars:number_of_stars});
+    },res);
 });
 
 // Create server and listen to CF Port
