@@ -13,23 +13,46 @@
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
   </head>
-  <body>
+  <body style="background-color:black">
     <!--this is where you add codes-->
+    <div class="row clearfix">
+        <div class="col-md-4 column">
+            <h2 class="text-right">
+            <a class="text-muted" href=" "><strong>Search </strong> </a>
+            </h2>
+        </div>
+        <div class="col-md-4 column">
+                <h2  class="text-center" >
+                    <a class="text-muted"  href=" "><strong>  Relations </strong></a>
+                </h2>
+        </div>
+        <div class="col-md-4 column" class="text-primary">
+                <h2 class="text-left">
+                    <a  href=" "><strong>  Results  </strong> </a>
+                </h2>
+        </div>
+    </div>
+    <div>
+        <label for="name">  <font color=#000000 size="4px"> <big> Discription:</big> </font></label>
+    </div>
         <div class="container">
             <div class="row clearfix">
                 <div class="col-md-12 column">
                     <form role="form" class="form-inline" action="/search_results" method="POST">
-                        <div class="form-group"  class="col-md-4 column">
-                             <label>Username</label><input type="text" name="text_username" class="form-control"/>
+                        <div class="form-group"  class="col-md-3 column">
+                             <label></label><input type="text" name="text_username" class="form-control" placeholder="Github Name"/>
                         </div>
-                        <div class="col-md-3 column">
+                        <div class="col-md-4 column">
                         </div>
                         <div class="form-group" class="col-md-5 column">
-                             <label>Description</label><input type="text" name="text_description" class="form-control" />
+                             <label></label><input type="text" name="text_description" class="form-control" placeholder="Description"/>
                         </div>
                         <button type="submit" class="btn btn-default">Search</button>
                     </form>
                 </div>
+            </div>
+            <div>
+                <label for="name">  <font color=#000000 size="4px"> <big> Discription:</big> </font></label>
             </div>
 			<div class="panel-group" id="panel-199437">
             <% for (repo in repo_list) {%>
