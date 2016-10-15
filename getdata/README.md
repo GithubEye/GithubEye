@@ -1,10 +1,9 @@
 获得一个人的所有following的信息（递归maxdepth层）
 
-following_list([username] , callback , extra_res)
+following_list(username , callback , extra_res)
 
 *extra_res是在页面post的回调函数所需渲染页面的参数，如果是纯命令行运行则可赋值为null*
 
-Attention! username需要是一个List
 只递归两层：username关注的人，以及关注的人关注的人
 {
 	callback(Dict{'username' : distance} , extra_res)
