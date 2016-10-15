@@ -48,8 +48,14 @@ app.post('/show_followings', urlencodedParser, function(req, res) {
 app.post('/show_repos', urlencodedParser, function(req, res) {
     username=req.body.text_username;
     console.log(username);
+    repo.repo_list(username, function(fullname_list, res) {
+        console.log(fullname_list);
+        for(fullname in fullname_list){
+            console.log(fullname_list[fullname]);
+        }
+        res.render('show_repolist', {repolist: fullname_list});
+    }, res);
     //TODO
-
 });
 
 app.post('/show_readme', urlencodedParser, function(req, res) {
