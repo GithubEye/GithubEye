@@ -1,29 +1,32 @@
 获得一个人的所有following的信息（递归maxdepth层）
 
-following_list([username] , callback)
+following_list([username] , callback , extra_res)
+
+*extra_res是在页面post的回调函数所需渲染页面的参数，如果是纯命令行运行则可赋值为null*
+
 Attention! username需要是一个List
 只递归两层：username关注的人，以及关注的人关注的人
 {
-	callback(Dict{'username' : distance})
+	callback(Dict{'username' : distance} , extra_res)
 }
 
 获得一个人的所有仓库列表
 
-repo_list(username , callback)
+repo_list(username , callback , extra_res)
 {
-	callback(Array[fullname])
+	callback(Array[fullname] , extra_res)
 }
 
 获得一个仓库的readme信息
 
-get_readme(fullname , callback)
+get_readme(fullname , callback , extra_res)
 {
-	callback(text)
+	callback(text , extra_res)
 }
 
 获得一个仓库的stars数量
 
-get_stars(fullname , callback)
+get_stars(fullname , callback , extra_res)
 {
-	callback(number_of_stars)
+	callback(number_of_stars , extra_res)
 }

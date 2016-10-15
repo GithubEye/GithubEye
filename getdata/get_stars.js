@@ -1,5 +1,5 @@
 module.exports = {
-get_stars : function(fullname , f)
+get_stars : function(fullname , f , extra_res)
 {
 	var options = {
 		host : 'api.github.com' , 
@@ -28,5 +28,5 @@ get_stars : function(fullname , f)
 			});
 		})
 	request.on('error' , function(e){console.log('got error' , e.message);});
-	request.on('close' , function(){f(result)});
+	request.on('close' , function(){if(extra_res == null)f(result);else f(result , extra_res);});
 }};

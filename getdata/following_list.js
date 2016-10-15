@@ -7,7 +7,6 @@ function Get_follow(user,f){
 	var options = {
 		host : 'api.github.com' , 
 		path : '/users/splintersu/following' , 
-		//curl -i 'https://api.github.com/users/whatever?client_id=xxxx&client_secret=yyyy'
 		method : 'GET' , 
 		headers : {'user-agent' : 'GooHub'}
 	}
@@ -15,7 +14,6 @@ function Get_follow(user,f){
 	var str = "";
 	var count = 0;
 	for(var i in user){
-		//console.log('find'+user[i]);
 		options.path='/users/'+user[i]+'/following?client_id=4565735ff9352155de90&client_secret=0529ff26465042c495644a393337153facece8ad';
 		var request;
 		

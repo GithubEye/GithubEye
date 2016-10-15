@@ -67,7 +67,7 @@ function text_similarity(text , pattern)//text & pattern are strs, return a numb
 }
 
 module.exports = {
-similarity_check : function(fullname , description , f)
+similarity_check : function(fullname , description , f , extra_res)
 {
 	console.log('#now calling [similarity_check]#')
 	get_readme.get_readme(fullname , 
@@ -75,6 +75,6 @@ similarity_check : function(fullname , description , f)
 	{
 		console.log('readme text is ' + readme_text);
 		var similarity = text_similarity(readme_text , description);
-		f(similarity);
+		if(extra_res == null)f(similarity);else f(similarity , extra_res);
 	});
 }};
