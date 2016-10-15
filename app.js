@@ -2,11 +2,15 @@ var path = require('path');
 var express = require('express');
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
+var ejs = require('ejs');
+var readme = require('./getdata/get_readme');
 
 var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+//app.set('view engine', 'pug');
+app.engine('.html', ejs.__express);
+app.set('view engine', 'html');
 
 // Get page with a single imageg url input box
 app.get('/', function(req, res) {
@@ -27,6 +31,7 @@ app.post('/search_similar_repo', urlencodedParser, function(req, res) {
     description=req.body.text_description;
     console.log(username);
     console.log(description);
+
     //TODO
 });
 
@@ -40,11 +45,17 @@ app.post('/show_repos', urlencodedParser, function(req, res) {
     username=req.body.text_username;
     console.log(username);
     //TODO
+
 });
 
 app.post('/show_readme', urlencodedParser, function(req, res) {
     reponame=req.body.text_reponame;
     console.log(reponame);
+    readme.get_readme(reponame, function(text, res){
+        //TODO
+        console.log(text);
+        res.render('show_readme', {text: text});
+    }, res);
     //TODO
 });
 
