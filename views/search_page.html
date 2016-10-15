@@ -54,46 +54,48 @@
 		</div>
 	</div>
 	<div class="row clearfix">
-		<div class="col-md-6 column"> 
+	</div>
+</div>
+	<div class="row clearfix">
+		<div class="col-md-5 column">
 		</div>
 		<div class="col-md-2 column">
-				<form role="search">
+			 <form role="form" action="/search_similar_repo" method="POST" align=center>
                                                 <div class="form-group form-center">
-                                                <input type="text" class="form-control" placeholder="Github Username"> 
+                                                <input name="text_username" type="text" class="form-control" placeholder="Github Name">
                                                 </div>
-                                        </form> 	
 		</div>
-		<div class="col-md-4 column">
-                </div>
-			</nav>
+		<div class="col-md-5 column">
 		</div>
 	</div>
-</div>
+
 	<div class="row clearfix">
-		<div class="col-md-2 column">
+		<div class="col-md-3 column">
 		</div>
+		<div class="col-md-6 column">
+                                <div class="form-group">
+                                        <label for="name"> <font size="3px"> <big> Discription:</big> </font></label>
+                                        <textarea name="text_discription"class="form-control" rows="5" placeholder="After filling in discription for what code you are looking for,you will get your satisfying answers." ></textarea>
+                                </div>
+				</form>
+		</div>
+
+		<div class="col-md-3 column">
+		</div>
+                        </nav>
+	</div>
+	<div class="container">
+	<div class="row clearfix">
 		<div class="col-md-8 column">
-			<form role="form">
-  				<div class="form-group">
-    					<label for="name"> <big> Discription:</big> </label>
-    					<textarea class="form-control" rows="3" placeholder="Discription"></textarea>
-  				</div>
-			</form>
 		</div>
 		<div class="col-md-2 column">
-		</div>
-	</div>
-	<div class="row clearfix">
-		<div class="col-md-9 column">
-		</div>
-		<div class="col-md-1 column">
-		<div class="container">
-		<button type="button" class="btn">search</button>
+			 <button type="button" class="btn btn-default btn-block">SEARCH</button>
 		</div>
 		<div class="col-md-2 column">
 		</div>
 	</div>
 </div>
+
    </body>
 </html>
 
