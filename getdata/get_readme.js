@@ -20,5 +20,4 @@ get_readme : function(fullname , f)
 		})
 	request.on('error' , function(e){console.log('got error' , e.message);});
 	request.on('close' , function(){f(result)});
-}
-}
+}};
