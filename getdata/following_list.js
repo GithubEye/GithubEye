@@ -1,3 +1,8 @@
+function sleep(period)
+{
+	for(var t = Date.now() ; Date.now() - t < period;)
+	{}
+}
 function Get_follow(user,f){
 	var https = require('https');
 	var options = {
@@ -50,7 +55,7 @@ function Get_follow(user,f){
 				}
 			});
 		}
-		sleep(200);
+		//sleep(200);
 	}
 }
 
