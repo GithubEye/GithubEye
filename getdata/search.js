@@ -69,6 +69,48 @@ function fun(repolist , desc , f , extra_res)
 module.exports = {
 	search : function(user , desc , f , extra_res)
 	{
+		following_list.following_list(user ,
+		function(namelist)
+		{
+			var repo = [];
+			var repo_finish_count = 0;
+			console.log('namelist:' , namelist);
+			for(var i in namelist)
+			{
+				repo_list.repo_list(namelist[i] , 
+				function(repolist_of_this_person)
+				{
+					console.log('repolist_of_this_person' , repolist_of_this_person);
+					repo = repo.concat(repolist_of_this_person);
+					repo_finish_count += 1
+				} , null)
+			}
+			/*
+			for(var t = Date.now(); Date.now() - t <= 100000;)
+			{
+				if(repo_finish_count == namelist.length)
+				{
+					fun(repo , desc , f , extra_res);
+					return;
+				}
+			}
+			*/
+			var call_back_func = function(){
+				if(repo_finish_count == namelist.length)
+				{
+					fun(repo , desc , f , extra_res);
+					return;
+				}
+				else
+				{
+					setTimeout(call_back_func , 5000);
+				}
+			};
+			setTimeout(call_back_func , 5000);
+		} , null)
+	},
+	search_naive : function()
+	{
 		following_list.following_list_naive(user ,
 		function(namelist)
 		{
