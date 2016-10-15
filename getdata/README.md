@@ -29,3 +29,8 @@ get_stars(fullname , callback , extra_res)
 {
 	callback(number_of_stars , extra_res)
 }
+
+search(username , description , callback , extra_res)
+{
+	callback([[reponame1 , similarity1 , stars] , ...] , extra_res)
+}
