@@ -21,8 +21,6 @@ function fun2(ext_repolist , f , extra_res)
 				ext_repolist[j] = tmp;
 			}
 		}
-	for(var i = 0 ; i < ext_repolist.length ; i++)
-		console.log('evaluate ' + evaluate(ext_repolist[i]));
 	if(extra_res == null)f(ext_repolist);
 	else f(ext_repolist , extra_res);
 }

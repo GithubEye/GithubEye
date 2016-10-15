@@ -16,10 +16,10 @@ function Get_follow(user,f){
 	for(var i in user){
 		options.path='/users/'+user[i]+'/following?client_id=4565735ff9352155de90&client_secret=0529ff26465042c495644a393337153facece8ad';
 		var request;
-		
+		/*
 		for(var i=0;i<10;i++)
 		{
-			try{
+			try{*/
 				//sleep(100);
 				request = https.get(options, function(res) {
 				console.log('Got response' + res.statusCode);
@@ -55,11 +55,11 @@ function Get_follow(user,f){
 					}
 				});
 				break;
-			}
+			}/*
 			catch(e){
 				console.log('fuck');
 				continue;
-			}
+			}*/
 		}
 	}
 	
