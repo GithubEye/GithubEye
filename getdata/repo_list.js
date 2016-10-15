@@ -1,9 +1,9 @@
 module.exports = {
-repo_list : function(user , f)
+repo_list : function(username , f)
 {
 	var options = {
 		host : 'api.github.com' , 
-		path : '/users/' + 'splintersu' + '/repos' ,
+		path : '/users/' + username + '/repos' ,
 		method : 'GET' , 
 		headers : {'user-agent' : 'GooHub App'}
 	};
