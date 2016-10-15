@@ -8,6 +8,7 @@ var stars = require('./getdata/get_stars');
 var repo = require('./getdata/repo_list');
 var following = require('./getdata/following_list');
 var similarity = require('./getdata/similarity_check');
+var search = require('./getdata/search.js');
 
 var app = express();
 // view engine setup
@@ -35,8 +36,23 @@ app.post('/search_similar_repo', urlencodedParser, function(req, res) {
     description=req.body.text_description;
     console.log(username);
     console.log(description);
-    //TODO
+    search.search_naive(username, description, function(results, res){
+        console.log(results);
+        res.render('result_page', {repo_list: results});
+    }, res);
 });
+
+app.post('/search_results', urlencodedParser, function(req, res) {
+    username=req.body.text_username;
+    description=req.body.text_description;
+    console.log(username);
+    console.log(description);
+    search.search_naive(username, description, function(results, res){
+        console.log(results);
+        res.render('result_page', {repo_list: results});
+    }, res);
+});
+
 
 app.post('/show_followings', urlencodedParser, function(req, res) {
     username=req.body.text_username;
