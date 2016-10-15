@@ -19,7 +19,7 @@ function i_get_raw_README(fullname , f , extra_res)
 				result += data;
 			});
 		})
-	request.on('error' , function(e){console.log('got error' , e.message);});
+	request.on('error' , function(e){console.log('got error' , e.message);request.close();});
 	request.on('close' , function(){if(extra_res == null)f(result);else f(result , extra_res)});	
 }
 
@@ -34,7 +34,7 @@ function i_get_readme(fullname , f , extra_res)
 
 	var result = '';
 
-	console.log('#now calling [get_Readme]#');
+	console.log('#now calling [get_readme]#');
 
 	var ok = true;
 
@@ -51,7 +51,7 @@ function i_get_readme(fullname , f , extra_res)
 				result += data;
 			});
 		})
-	request.on('error' , function(e){console.log('got error' , e.message);});
+	request.on('error' , function(e){console.log('got error' , e.message);request.close();});
 	request.on('close' , function(){if(!ok)return;if(extra_res == null)f(result);else f(result , extra_res)});
 }
 function i_get_Readme(fullname , f , extra_res)
@@ -82,7 +82,7 @@ function i_get_Readme(fullname , f , extra_res)
 				result += data;
 			});
 		})
-	request.on('error' , function(e){console.log('got error' , e.message);});
+	request.on('error' , function(e){console.log('got error' , e.message);request.close();});
 	request.on('close' , function(){if(!ok)return;if(extra_res == null)f(result);else f(result , extra_res)});
 }
 function i_get_README(fullname , f , extra_res)
@@ -114,7 +114,7 @@ function i_get_README(fullname , f , extra_res)
 				result += data;
 			});
 		})
-	request.on('error' , function(e){console.log('got error' , e.message);});
+	request.on('error' , function(e){console.log('got error' , e.message);request.close();});
 	request.on('close' , function(){if(!ok)return;if(extra_res == null)f(result);else f(result , extra_res)});
 }
 

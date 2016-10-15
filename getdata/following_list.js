@@ -47,6 +47,7 @@ function Get_follow(user, f , extra_res){
 			});
 			request.on('error', function(e) {
 				console.error(e);
+				request.close();
 			});
 			request.on('close' , function(){
 				count++;
