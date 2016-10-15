@@ -1,6 +1,8 @@
 获得一个人的所有following的信息（递归maxdepth层）
 
-following_list(username , maxdepth , callback)
+following_list([username] , callback)
+Attention! username需要是一个List
+只递归两层：username关注的人，以及关注的人关注的人
 {
 	callback(Dict{'username' : distance})
 }
