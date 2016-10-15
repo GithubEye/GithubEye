@@ -21,7 +21,7 @@ app.set('view engine', 'html');
 app.get('/', function(req, res) {
   var fs = require('fs');
 
-  fs.readFile('views/index.html', function (err, data) {
+  fs.readFile('views/search_page.html', function (err, data) {
     res.writeHead(200, {
       'Content-Type': 'text/html',
       'Content-Length': data.length
