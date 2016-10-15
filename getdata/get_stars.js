@@ -1,5 +1,5 @@
 module.exports = {
-get_readme : function(fullname , f)
+get_stars : function(fullname , f)
 {
 	var options = {
 		host : 'api.github.com' , 
@@ -26,5 +26,5 @@ get_readme : function(fullname , f)
 			});
 		})
 	request.on('error' , function(e){console.log('got error' , e.message);});
-	request.on('close' , function(){f(result)})
-}
+	request.on('close' , function(){f(result)});
+}};

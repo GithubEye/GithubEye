@@ -24,13 +24,12 @@ repo_list : function(username , f)
 				var tmp = JSON.parse(full_respond);
 				for(var i in tmp)
 				{
-					result.push(tmp[i]['full_name'])
+					result.push(tmp[i]['full_name']);
 					//console.log('push' + tmp[i]['full_name'])
 				}
 			})
 			
 		})
 	request.on('error' , function(e){console.log('got error' , e.message);});
-	request.on('close' , function(){f(result)})
-}
-}
+	request.on('close' , function(){f(result)});
+}};
