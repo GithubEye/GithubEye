@@ -33,9 +33,10 @@ repo_list : function(username , f , extra_res)
 				{
 					var tmp = JSON.parse(full_respond);
 				}
-				catch(e)
+				catch(err)
 				{
-					console.log('Something fucking just happened');
+					console.log('Something fucking just happened , ' , err);
+					tmp = null;
 				}
 				finally
 				{
@@ -44,7 +45,7 @@ repo_list : function(username , f , extra_res)
 						result.push(tmp[i]['full_name']);
 						//console.log('push' + tmp[i]['full_name'])
 					}
-				}
+				};
 			})
 			
 		})

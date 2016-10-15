@@ -88,7 +88,6 @@ function text_similarity_v2(text , words_in_pattern)
 			result += words_in_pattern[splitted_text[i]];
 	
 	return result * Math.log(total_length) * Math.log(total_length) / total_length;
-	//return result / (total_length + 10);
 }
 
 function text_similarity(text , pattern)//text & pattern are strs, return a number

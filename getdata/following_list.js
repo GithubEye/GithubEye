@@ -35,6 +35,7 @@ function Get_follow(user, f , extra_res){
 				}
 				catch(err){
 					console.log('WTF!something fucking has happened!')
+					dict = null;
 				}
 				finally
 				{

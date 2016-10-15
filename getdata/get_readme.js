@@ -1,15 +1,15 @@
-function i_get_readme(fullname , f , extra_res)
+function i_get_raw_README(fullname , f , extra_res)
 {
 	var options = {
 	host : 'raw.githubusercontent.com' , 
-	path : '/' + fullname + '/master/readme.md' ,
+	path : '/' + fullname + '/master/README' ,
 	method : 'GET' , 
 	headers : {'user-agent' : 'GooHub App'}
 	};
 
 	var result = '';
 
-	console.log('#now calling [get_readme]#');
+	console.log('#now calling [get_raw_README]#');
 
 	var https = require('https');
 	var request = https.get(options,
@@ -20,7 +20,39 @@ function i_get_readme(fullname , f , extra_res)
 			});
 		})
 	request.on('error' , function(e){console.log('got error' , e.message);});
-	request.on('close' , function(){if(extra_res == null)f(result);else f(result , extra_res)});
+	request.on('close' , function(){if(extra_res == null)f(result);else f(result , extra_res)});	
+}
+
+function i_get_readme(fullname , f , extra_res)
+{
+	var options = {
+		host : 'raw.githubusercontent.com' , 
+		path : '/' + fullname + '/master/readme.md' ,
+		method : 'GET' , 
+		headers : {'user-agent' : 'GooHub App'}
+	};
+
+	var result = '';
+
+	console.log('#now calling [get_Readme]#');
+
+	var ok = true;
+
+	var https = require('https');
+	var request = https.get(options,
+		function(res){
+			console.log('Got response' + res.statusCode);
+			if(res.statusCode == 404)
+			{
+				i_get_raw_README(fullname , f , extra_res);
+				ok = false;;
+			}
+			res.on('data' , function(data){
+				result += data;
+			});
+		})
+	request.on('error' , function(e){console.log('got error' , e.message);});
+	request.on('close' , function(){if(!ok)return;if(extra_res == null)f(result);else f(result , extra_res)});
 }
 function i_get_Readme(fullname , f , extra_res)
 {

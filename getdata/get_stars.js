@@ -36,14 +36,15 @@ get_stars : function(fullname , f , extra_res)
 				{
 					var tmp = JSON.parse(full_respond);
 				}
-				catch(e)
+				catch(err)
 				{
-					console.log('something ****ing has happended again');
+					console.log('something ****ing has happended again , ' , err);
+					tmp = {'stargazers_count' : 0};
 				}
 				finally
 				{
 					result = tmp['stargazers_count']
-				}
+				};
 			});
 		})
 

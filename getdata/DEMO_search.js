@@ -1,3 +1,3 @@
 search = require('./search.js')
-search.search_naive('splintersu' , 'I want to use word vector' ,
+search.search_naive('buyijie' , 'Linux' ,
 	function(ext_repo){console.log(ext_repo);} , null)
