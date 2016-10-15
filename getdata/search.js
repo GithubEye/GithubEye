@@ -51,38 +51,19 @@ function fun(repolist , desc , f , extra_res)
 			count2 += 1;
 		} , i)
 	}
-	setTimeout(function(){
+
+	var call_back_func = function(){
 		if(count == repolist.length && count2 == repolist.length)
 		{
 			fun2(ext_repolist , f , extra_res);
 			return;
 		}
-		setTimeout(function(){
-			if(count == repolist.length && count2 == repolist.length)
-			{
-				fun2(ext_repolist , f , extra_res);
-				return;
-			}
-			setTimeout(function(){
-				if(count == repolist.length && count2 == repolist.length)
-				{
-					fun2(ext_repolist , f , extra_res);
-					return;
-				}
-				setTimeout(function(){
-					if(count == repolist.length && count2 == repolist.length)
-					{
-						fun2(ext_repolist , f , extra_res);
-						return;
-					}
-					else
-					{
-						throw('WTF');
-					}
-				} , 5000)
-			} , 5000);
-		} , 5000);
-	} , 5000);
+		else
+		{
+			setTimeout(call_back_func , 5000);
+		}
+	}
+	setTimeout(call_back_func , 5000);
 }
 
 module.exports = {
@@ -104,39 +85,28 @@ module.exports = {
 					repo_finish_count += 1
 				} , null)
 			}
-			
-			setTimeout(function(){
+			/*
+			for(var t = Date.now(); Date.now() - t <= 100000;)
+			{
 				if(repo_finish_count == namelist.length)
 				{
 					fun(repo , desc , f , extra_res);
 					return;
 				}
-				setTimeout(function(){
-					if(repo_finish_count == namelist.length)
-					{
-						fun(repo , desc , f , extra_res);
-						return;
-					}
-					setTimeout(function(){
-						if(repo_finish_count == namelist.length)
-						{
-							fun(repo , desc , f , extra_res);
-							return;
-						}
-						setTimeout(function(){
-							if(repo_finish_count == namelist.length)
-							{
-								fun(repo , desc , f , extra_res);
-								return;
-							}
-							else
-							{
-								throw('What the fucking Internet connection!!!!!!!!');
-							}
-						} , 5000);
-					} , 5000)
-				} , 5000);
-			} , 5000)
+			}
+			*/
+			var call_back_func = function(){
+				if(repo_finish_count == namelist.length)
+				{
+					fun(repo , desc , f , extra_res);
+					return;
+				}
+				else
+				{
+					setTimeout(call_back_func , 5000);
+				}
+			};
+			setTimeout(call_back_func , 5000);
 		} , null)
 	}
 };

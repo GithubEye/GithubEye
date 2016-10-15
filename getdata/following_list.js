@@ -1,7 +1,3 @@
-function sleep(d){
-  for(var t = Date.now();Date.now() - t <= d;);
-}
-
 function Get_follow(user,f){
 	var https = require('https');
 	var options = {
@@ -54,7 +50,6 @@ function Get_follow(user,f){
 				}
 			});
 		}
-
 		sleep(200);
 	}
 }
@@ -89,7 +84,10 @@ following_list : function(str_user,f , res){
 			//console.log('2'+all_user);
 			f(all_user , res);
 		});
-	});
-		
+	});	
+} , 
+following_list_naive : function(str_user , f , res)
+{
+
 }
 }

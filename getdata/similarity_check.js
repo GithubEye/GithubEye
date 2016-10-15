@@ -1,27 +1,55 @@
 var get_readme = require('./get_readme.js')
 
 function split_sentence_to_word(str){
-	str = str.toLowerCase();
 	var result = [];
 	var flag = true;
 	var word_now = '';
+	var special = false;
 	for(var i in str){
-		if(str[i] >= 'a' && str[i] <= 'z'){
-			if(!flag){
-				flag = true;
-				word_now = '';
+		if(flag)
+		{
+			if((str[i] >= 'a' && str[i] <= 'z') || (str[i] >= '0' && str[i] <= '9')
+				|| (str[i] == '_') || (str[i] == '-') || (str[i] >= 'A' && str[i] <= 'Z'))
+			{
+				word_now += str[i];
+				if(str[i] >= 'A' && str[i] <= 'Z')
+					special = true;
+				if(str[i] == '_')
+					special = true;
+				if(str[i] == '-')
+					special = true;
 			}
-			word_now += str[i];
-		}
-		else{
-			if(flag){
+			else
+			{
+				flag = false;
+				if(special)
+					word_now = word_now.toUpperCase();
+				else word_now = word_now.toLowerCase();
+				special = false;
 				result.push(word_now);
 				word_now = '';
-				flag = false;
+			}
+		}
+		else
+		{
+			if((str[i] >= 'a' && str[i] <= 'z') || (str[i] >= '0' && str[i] <= '9')
+				|| (str[i] == '_') || (str[i] == '-') || (str[i] >= 'A' && str[i] <= 'Z'))
+			{
+				if(str[i] >= 'A' && str[i] <= 'Z')
+					special = true;
+				if(str[i] == '_')special = true;
+				if(str[i] == '-')special = true;
+				flag = true;
+				word_now = str[i];
 			}
 		}
 	}
-	if(flag)result.push(word_now);
+	if(flag)
+	{
+		if(special)word_now = word_now.toUpperCase();
+		else word_now = word_now.toLowerCase();
+		result.push(word_now);
+	}
 	return result;
 }
 
@@ -62,9 +90,15 @@ function text_similarity(text , pattern)//text & pattern are strs, return a numb
 	var words_in_pattern = {};
 	for(var i in splitted_pattern)
 	{
-		if(words_in_pattern[splitted_pattern[i]] > 0)
-			words_in_pattern[splitted_pattern[i]]++;
-		else words_in_pattern[splitted_pattern[i]] = 1;
+		if(words_in_pattern[splitted_pattern[i].toLowerCase()] > 0)
+			words_in_pattern[splitted_pattern[i].toLowerCase()]++;
+		else
+		{
+			if(splitted_pattern[i][0] >= 'A' && split_sentence_to_word[i][0] <= 'Z')
+				words_in_pattern[splitted_pattern[i].toLowerCase()] = 4;
+			else
+				words_in_pattern[splitted_pattern[i]] = 1;
+		}
 	}
 	words_in_pattern = eliminate_conjunctions(words_in_pattern);
 
