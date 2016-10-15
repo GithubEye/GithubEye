@@ -69,7 +69,7 @@ function fun(repolist , desc , f , extra_res)
 module.exports = {
 	search : function(user , desc , f , extra_res)
 	{
-		following_list.following_list(user ,
+		following_list.following_list_naive(user ,
 		function(namelist)
 		{
 			var repo = [];

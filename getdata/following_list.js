@@ -3,7 +3,7 @@ function sleep(period)
 	for(var t = Date.now() ; Date.now() - t < period;)
 	{}
 }
-function Get_follow(user,f){
+function Get_follow(user, f , extra_res){
 	var https = require('https');
 	var options = {
 		host : 'api.github.com' , 
@@ -51,7 +51,8 @@ function Get_follow(user,f){
 				count++;
 				if(count == user.length)
 				{
-					f(username);
+					if(extra_res == null)f(username);
+					else f(username , extra_res);
 				}
 			});
 		}
@@ -61,7 +62,7 @@ function Get_follow(user,f){
 
 
 module.exports = {
-following_list : function(str_user,f , res){
+following_list : function(str_user, f , res){
 	//var dict={};
 	var user=new Array();
 	user.push(str_user);
@@ -89,10 +90,8 @@ following_list : function(str_user,f , res){
 			//console.log('2'+all_user);
 			f(all_user , res);
 		});
-	});	
+	} , null);
 } , 
 following_list_naive : function(str_user , f , res)
-{
-
-}
+{Get_follow([str_user] , f , res);}
 }
