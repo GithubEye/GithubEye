@@ -5,7 +5,7 @@ similarity_check = require('./similarity_check.js');
 
 function evaluate(instance)
 {
-	return (instance[1] + 0.1) * 100 + (instance[2] + 1) * 0.003;
+	return (instance[1] + 0.1) * 100 + (instance[2] + 1) * 0.01;
 }
 
 function fun2(ext_repolist , f , extra_res)
@@ -86,16 +86,6 @@ module.exports = {
 					repo_finish_count += 1
 				} , null)
 			}
-			/*
-			for(var t = Date.now(); Date.now() - t <= 100000;)
-			{
-				if(repo_finish_count == namelist.length)
-				{
-					fun(repo , desc , f , extra_res);
-					return;
-				}
-			}
-			*/
 			var call_back_func = function(){
 				if(repo_finish_count == namelist.length)
 				{
@@ -104,6 +94,7 @@ module.exports = {
 				}
 				else
 				{
+					console.log(repo_finish_count + '/' + namelist.length);
 					setTimeout(call_back_func , 5000);
 				}
 			};
@@ -128,16 +119,6 @@ module.exports = {
 					repo_finish_count += 1
 				} , null)
 			}
-			/*
-			for(var t = Date.now(); Date.now() - t <= 100000;)
-			{
-				if(repo_finish_count == namelist.length)
-				{
-					fun(repo , desc , f , extra_res);
-					return;
-				}
-			}
-			*/
 			var call_back_func = function(){
 				if(repo_finish_count == namelist.length)
 				{

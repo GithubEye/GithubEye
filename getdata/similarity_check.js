@@ -64,7 +64,8 @@ function eliminate_conjunctions(word_dict)
 	'and' , 'or' , 'but' , 'of' , 'in' , 'on' , 'the' , 
 	'at' , 'still' , 'since' , 'for' , 'over' , 'within' ,
 	'a' , 'an' , 'by' , 'through' , 'over' , 'with' , 'without' ,
-	'because' , 'owing' , 'over'];
+	'because' , 'owing' , 'over' , 'get' , 'which' , 'what' , 'when' , 'where' , 'if' ,
+	'whether'];
 	for(var i in conjunctions)
 	{
 		if(result[conjunctions[i]] > 0)
@@ -75,7 +76,7 @@ function eliminate_conjunctions(word_dict)
 
 function text_similarity_v2(text , words_in_pattern)
 {
-	var total_length = text.length
+	var total_length = text.length + 1;
 
 	var splitted_text = split_sentence_to_word(text);
 
@@ -85,7 +86,7 @@ function text_similarity_v2(text , words_in_pattern)
 		if(words_in_pattern[splitted_text[i]] > 0)
 			result += words_in_pattern[splitted_text[i]];
 	
-	return result;
+	return result / total_length + Math.log(total_length);
 	//return result / (total_length + 10);
 }
 
