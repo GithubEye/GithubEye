@@ -44,6 +44,19 @@ app.get('/about_us', function(req, res) {
   });
 });
 
+app.get('/relations', function(req, res) {
+  var fs = require('fs');
+
+  fs.readFile('views/relations_page.html', function (err, data) {
+    res.writeHead(200, {
+      'Content-Type': 'text/html',
+      'Content-Length': data.length
+    });
+    res.write(data);
+    res.end();
+  });
+});
+
 
 app.post('/search_similar_repo', urlencodedParser, function(req, res) {
     username=req.body.text_username;
