@@ -25,8 +25,9 @@ and to send pull requests to help us improve this project.
 Anybody want to get involved in this long-term project is welcomed!
 
 Currently contributor list (sorted by ID):
-AaronHeee from Fudan University
-buyijie from Fudan University
-cyMichael from Fudan University
-splintersu from Fudan University
-Tankche1 from Fudan University
+
+* AaronHeee from Fudan University
+* buyijie from Fudan University
+* cyMichael from Fudan University
+* splintersu from Fudan University
+* Tankche1 from Fudan University
