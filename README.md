@@ -4,7 +4,7 @@
 * The website of our GithubEye:  http://githubeye.mybluemix.net/
 
 In this hackathon, my team built a content search service named GithubEye to 
-help people find Github repos. Here I give two scenarios when you may need 
+help people find Github repos. Here I give below scenarios when you may need 
 this search service: 
 
 1. You are following a lot of people and you want to find some interesting repos
@@ -18,6 +18,10 @@ in this area, you know some person who is famous in this area. Here you go! Type
 the Github user name of this famous person and your natural language description of 
 what you are looking for. Then our service return you the sorted repo list from that 
 famous person's following list.
+
+3. For some reason, you want to investigate someone’s technology interests (for example, 
+you are looking for employees). Use our service! Input the Github user name and the technology 
+area you are interested in, and see if this person’s interests are related with yours. 
 
 You are welcomed to try our demo on this web address <http://githubeye.mybluemix.net> 
 and to send pull requests to help us improve this project. 
