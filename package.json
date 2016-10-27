@@ -1,0 +1,21 @@
+{
+  "name": "githubeye",
+  "version": "1.0.0",
+  "description": "* This is a project from our team (Ne te quaesiveris extra) in HACKxFDU 2016 * The website of our GithubEye:  http://githubeye.mybluemix.net/",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cfenv": "^1.0.3",
+    "ejs": "^2.5.2",
+    "express": "^4.14.0",
+    "jade": "^1.11.0",
+    "mongodb": "^2.2.11",
+    "pug": "^2.0.0-beta6",
+    "watson-developer-cloud": "^2.5.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node app.js",
+    "start": "node app.js"
+  }
+}
