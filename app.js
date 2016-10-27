@@ -3,6 +3,46 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 var ejs = require('ejs');
+var util = require('util');
+var assert = require('assert');
+var cfenv = require('cfenv');
+var appenv = cfenv.getAppEnv();
+var services = appenv.services;
+var mongodb_services = services["compose-for-mongodb"];
+var MongoClient = require('mongodb').MongoClient;
+var mongodb;
+
+if(mongodb_services){
+    var mongodb_credentials=mongodb_services[0].credentials;
+    var mongodb_ca=[new Buffer(mongodb_credentials.ca_certificate_base64, 'base64')];
+
+    MongoClient.connect(mongodb_credentials.uri, {
+        mongos: {
+            ssl: true,
+            sslValidate: true,
+            sslCA: mongodb_ca,
+            poolSize: 1,
+            reconnectTries: 1
+        }
+    }, function(err, db){
+        if (err){
+            console.log(err);
+        } else{
+            mongodb=db.db("githubeye");
+        }
+    });
+} else{
+    MongoClient.connect('mongodb://localhost:27017/githubeye',
+            function(err, db){
+                if(err){
+                    console.log(err);
+                } else{
+                    mongodb=db;
+                }
+            })
+}
+
+//Local modules
 var readme = require('./getdata/get_readme');
 var stars = require('./getdata/get_stars');
 var repo = require('./getdata/repo_list');
@@ -29,6 +69,37 @@ app.get('/', function(req, res) {
     res.write(data);
     res.end();
   });
+
+  mongodb.collection("visitors").updateOne({"count": {$ne: null}},
+      {$inc: {"count": 1}},
+      function(err, result){
+          if(err){
+              console.log(err);
+          } else{
+              if(result.result.nModified==0){
+                  mongodb.collection("visitors").insertOne({"count":1},
+                      function(err, result){
+                          if(err){
+                              console.log(err);
+                          } else{
+                              console.log("Successfully update visitors count!");
+                              mongodb.collection("visitors").find({"count": {$ne: null}}).toArray(
+                                  function(err, visitor_count){
+                                      console.log("Currently we have %d visitors!",
+                                          visitor_count[0].count);
+                                  });
+                          }
+                      })
+              }else{
+                  console.log("Successfully update visitors count!");
+                  mongodb.collection("visitors").find({"count": {$ne: null}}).toArray(
+                      function(err, visitor_count){
+                          console.log("Currently we have %d visitors!",
+                              visitor_count[0].count);
+                      });
+              }
+          }
+      });
 });
 
 app.get('/about_us', function(req, res) {
