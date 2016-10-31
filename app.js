@@ -70,36 +70,6 @@ app.get('/', function(req, res) {
     res.end();
   });
 
-  mongodb.collection("visitors").updateOne({"count": {$ne: null}},
-      {$inc: {"count": 1}},
-      function(err, result){
-          if(err){
-              console.log(err);
-          } else{
-              if(result.result.nModified==0){
-                  mongodb.collection("visitors").insertOne({"count":1},
-                      function(err, result){
-                          if(err){
-                              console.log(err);
-                          } else{
-                              console.log("Successfully update visitors count!");
-                              mongodb.collection("visitors").find({"count": {$ne: null}}).toArray(
-                                  function(err, visitor_count){
-                                      console.log("Currently we have %d visitors!",
-                                          visitor_count[0].count);
-                                  });
-                          }
-                      })
-              }else{
-                  console.log("Successfully update visitors count!");
-                  mongodb.collection("visitors").find({"count": {$ne: null}}).toArray(
-                      function(err, visitor_count){
-                          console.log("Currently we have %d visitors!",
-                              visitor_count[0].count);
-                      });
-              }
-          }
-      });
 });
 
 app.get('/about_us', function(req, res) {
@@ -151,6 +121,36 @@ app.post('/search_results', urlencodedParser, function(req, res) {
         console.log(results);
         res.render('result_page', {repo_list: results});
     }, res);
+    mongodb.collection("visitors").updateOne({"count": {$ne: null}},
+        {$inc: {"count": 1}},
+        function(err, result){
+            if(err){
+                console.log(err);
+            } else{
+                if(result.result.nModified==0){
+                    mongodb.collection("visitors").insertOne({"count":1},
+                        function(err, result){
+                            if(err){
+                                console.log(err);
+                            } else{
+                                console.log("Successfully update visitors count!");
+                                mongodb.collection("visitors").find({"count": {$ne: null}}).toArray(
+                                    function(err, visitor_count){
+                                        console.log("Currently we have %d visitors!",
+                                            visitor_count[0].count);
+                                    });
+                            }
+                        })
+                }else{
+                    console.log("Successfully update visitors count!");
+                    mongodb.collection("visitors").find({"count": {$ne: null}}).toArray(
+                        function(err, visitor_count){
+                            console.log("Currently we have %d visitors!",
+                                visitor_count[0].count);
+                        });
+                }
+            }
+        });
 });
 
 
@@ -195,6 +195,31 @@ app.post('/show_stars', urlencodedParser, function(req, res) {
        res.render('show_stars',{number_of_stars:number_of_stars});
     },res);
 });
+
+// Get visitor numbers
+app.get('/get_visitor', function(req, res) {
+    mongodb.collection("visitors").find({"count": {$ne: null}}).toArray(
+        function(err, visitor_count){
+            console.log("Currently we have %d visitors!",
+                visitor_count[0].count);
+            res.render('get_visitor', {visitor_number: visitor_count[0].count});
+        });
+});
+
+// Reset visitor numbers
+app.get('/reset_visitor', function(req, res) {
+    mongodb.collection("visitors").updateOne({"count": {$ne: null}},
+        {$set: {count: 0}},
+        function(err, result){
+            if(err){
+                console.log(err);
+            } else{
+                console.log("Successfully reset visitor counter!");
+                res.redirect('/');
+            }
+        });
+});
+
 
 // Create server and listen to CF Port
 var port = process.env.PORT || 8080
